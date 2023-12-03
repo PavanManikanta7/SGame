@@ -1,0 +1,89 @@
+import React, { useEffect, useState } from 'react';
+
+function SmileApp() {
+  const [smiles, setSmiles] = useState([]);
+
+  const generateRandomPosition = () => {
+    const divWidth = 300;
+    const divHeight = 200;
+    const x = Math.random() * divWidth;
+    const y = Math.random() * divHeight;
+
+    return { x, y };
+  };
+
+  const generateSmiles = () => {
+    const newSmiles = [];
+    for (let i = 0; i < 15; i++) {
+      const { x, y } = generateRandomPosition();
+      newSmiles.push(
+        <div
+          key={i}
+          style={{
+            position: 'absolute',
+            left: x + 'px',
+            top: y + 'px',
+          }}
+        >
+          😂
+        </div>
+      );
+    }
+
+    setSmiles(newSmiles);
+  };
+
+  useEffect(() => {
+    generateSmiles();
+  }, []);
+  const [smile, setSmile] = useState([]);
+
+  const generateRandom = () => {
+    const divWidth = 300;
+    const divHeight = 200;
+    const x = Math.random() * divWidth;
+    const y = Math.random() * divHeight;
+
+    return { x, y };
+  };
+
+  const generateSmile = () => {
+    const newSmile = [];
+    for (let i = 0; i < 1; i++) {
+      const { x, y } = generateRandom();
+      newSmile.push(
+        <div
+          key={i}
+          style={{
+            position: 'absolute',
+            left: x + 'px',
+            top: y + 'px',
+          }}
+        >
+          😂
+        </div>
+      );
+    }
+
+    setSmile(newSmile);
+  };
+
+  useEffect(() => {
+    generateSmile();
+  }, []);
+  return (
+    <article>
+    <div style={{ position: 'relative', width: '300px', height: '200px' }}>
+      {smiles}
+      <span onClick={()=>window.location.reload()}>{smile}</span>
+    </div>
+    <br/>
+    <hr/>
+    <div style={{ position: 'relative', width: '300px', height: '200px' }}>
+      {smiles}
+    </div>
+    </article>
+  );
+}
+
+export default SmileApp;
